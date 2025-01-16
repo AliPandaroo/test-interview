@@ -1,12 +1,12 @@
 # Route Groups
 
-## Group: Blogs
+## Group: Blog Hub
 
 **outlines the routing structure for managing blog posts and their comments.**
 
 ### Included Routes
 
-- **Blog Routes**
+- **Hub Routes**
 
   - **`/blogs`**: Displays a list of all blog posts.
   - **`/blogs/[blogId]`**: Displays the details of the blog post by its ID.
