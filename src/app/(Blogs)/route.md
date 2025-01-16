@@ -9,8 +9,8 @@
 - **Blog Routes**
 
   - **`/blogs`**: Displays a list of all blog posts.
-  - **`/blogs/[id]`**: Displays the details of the blog post by its ID.
+  - **`/blogs/[blogId]`**: Displays the details of the blog post by its ID.
 
 - **Comment Routes**
-  - **`/blogs/[id]/comments`**: Displays a list of all comments related to the blog post by its ID.
-  - **`/blogs/[id]/comments/[commentId]`**: Accesses the comment for the blog post by its comment ID.
+  - **`/blogs/[blogId]/comments`**: Displays a list of all comments related to the blog post by its ID.
+  - **`/blogs/[blogId]/comments/[commentId]`**: Accesses the comment for the blog post by its comment ID.
