@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 255 184 0;
+    --color-info: 81 145 222;
+    --color-success: 98 233 120;
+    --color-warning: 250 90 90;
+  }
+
+  input:-webkit-autofill,
+  textarea:-webkit-autofill {
+    background-color: transparent !important;
+    border: none !important;
+  }
+
+  input,
+  textarea,
+  button,
+  select,
+  a,
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  img {
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+  }
+}
+
+@layer utilities {
+  .dir-rtl{direction: rtl;}
+  .dir-ltr{direction: ltr;}
+  /* Font Variants - Consolidated */
+  .font-variants {
+    &-unset { all: unset; }
+    &-oblique { font-style: oblique; }
+    &-small-caps { font-variant-caps: all-small-caps; }
+    &-petite-caps { font-variant-caps: all-petite-caps; }
+    &-titling-caps { font-variant-caps: titling-caps; }
+    &-uppercase { text-transform: uppercase; }
+    &-lowercase { text-transform: lowercase; }
+    &-capitalize { text-transform: capitalize; }
+  }
+  .font-stretch-condensed{
+    font-stretch:condensed
+  }
+  .font-stretch-unset{
+    font-stretch: unset
+  }
+
+  /* Ligature Utilities - Simplified */
+  .ligatures {
+    &-common { 
+      font-variant-ligatures: common-ligatures; 
+      -webkit-font-variant-ligatures: common-ligatures; 
+    }
+    &-no-common { 
+      font-variant-ligatures: no-common-ligatures; 
+      -webkit-font-variant-ligatures: no-common-ligatures; 
+    }
+    &-discretionary { 
+      font-variant-ligatures: discretionary-ligatures; 
+      -webkit-font-variant-ligatures: discretionary-ligatures; 
+    }
+    &-contextual { 
+      font-variant-ligatures: contextual; 
+      -webkit-font-variant-ligatures: contextual; 
+    }
+  }
+
+  /* Scrollbar Utilities */
+  .hide-scrollbar {
+    &::-webkit-scrollbar { display: none; }
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Flexbox Utilities */
+  .flex {
+    &-center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    &-start {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+    &-end {
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+    &-space-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: space-between;
+    }
+  }
+
+  /* Scrollbar Styling */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #7a7c7ecb #323435;
+
+    &::-webkit-scrollbar {
+      width: 16px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #7a7c7ecb;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #323435;
+      border-radius: 10px;
+      border: 6px solid #323435;
+    }
+  }
+}
+
+@layer components {
+  .card { @apply rounded-sm bg-red-500; }
+}
+
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+main {
+  min-height: 90vh;
+  max-width: 1400px;
+  margin: auto;
+}
+
+/* CKEditor Styles - Consolidated */
+.ck.ck-content {
+  &:not(.ck-style-grid__button__preview):not(.ck-editor__nested-editable) {
+    min-height: 300px;
+    padding: 1em 1.5em;
+  }
+
+  &:not(:focus) {
+    border: 1px solid var(--ck-color-base-border);
+  }
+
+  /* Headings */
+  @for $i from 1 through 6 {
+    h#{$i} {
+      font-size: calc(2.3em / (1.25 * $i));
+      line-height: 1.2em;
+      padding-top: 0.8em;
+      margin-bottom: 0.4em;
+    }
+  }
+
+  /* Content Elements */
+  blockquote, ol, p, ul {
+    font-size: 1em;
+    line-height: 1.6em;
+    padding-top: 0.2em;
+    margin-bottom: var(--ck-spacing-large);
+  }
+
+  font-family: "Times New Roman", Time, serif;
+  line-height: 1.4;
+}
+
+[data-mode="dark"]h1::selection,
+[data-mode="dark"] h2::selection,
+[data-mode="dark"] h3::selection,
+[data-mode="dark"] h4::selection,
+[data-mode="dark"] h5::selection,
+[data-mode="dark"] h6::selection,
+[data-mode="dark"] p::selection,
+[data-mode="dark"] span::selection,
+[data-mode="dark"] img::selection,
+[data-mode="dark"] a::selection,
+[data-mode="dark"] li::selection,
+[data-mode="dark"] button::selection,
+[data-mode="dark"] label::selection,
+[data-mode="dark"] input::selection,
+[data-mode="dark"] textarea::selection,
+[data-mode="dark"] checkbox::selection,
+[data-mode="dark"] table::selection,
+[data-mode="dark"] tr::selection,
+[data-mode="dark"] td::selection,
+[data-mode="dark"] th::selection{
+   background: #323435;
+   color: #f9fafb;
+}
+
+[data-mode="light"]h1::selection,
+[data-mode="light"] h2::selection,
+[data-mode="light"] h3::selection,
+[data-mode="light"] h4::selection,
+[data-mode="light"] h5::selection,
+[data-mode="light"] h6::selection,
+[data-mode="light"] p::selection,
+[data-mode="light"] span::selection,
+[data-mode="light"] img::selection,
+[data-mode="light"] a::selection,
+[data-mode="light"] li::selection,
+[data-mode="light"] button::selection,
+[data-mode="light"] label::selection,
+[data-mode="light"] input::selection,
+[data-mode="light"] textarea::selection,
+[data-mode="light"] checkbox::selection,
+[data-mode="light"] table::selection,
+[data-mode="light"] tr::selection,
+[data-mode="light"] td::selection,
+[data-mode="light"] th::selection{
+   background: #323435;
+   color: #f9fafb;
+}
