@@ -10,8 +10,8 @@ interface Options {
   body?: any; // body if needed (for POST)
 }
 
-export const useFetch = (endpoint?: string, options: Options = {}) => {
-  const [data, setData] = useState<any>(null); // Use 'any' or a specific type based on your data structure
+export const useFetch = <T>(endpoint?: string, options: Options = {}) => {
+  const [data, setData] = useState<T | null>(null); // Use 'any' or a specific type based on your data structure
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -45,10 +45,10 @@ export const useFetch = (endpoint?: string, options: Options = {}) => {
       console.log({ query: appendedStrings });
     }
     url = `${baseUrl}${endpoint}${appendedStrings}`;
-    console.log({ url });
+    console.log(url);
   } else {
     url = `${baseUrl}${endpoint}`;
-    console.log({ url });
+    console.log(url);
   }
 
   // Memoize merged options to prevent unnecessary re-renders
@@ -72,7 +72,7 @@ export const useFetch = (endpoint?: string, options: Options = {}) => {
         if (!response.ok) {
           throw new Error(response.statusText);
         }
-        const result = await response.json();
+        const result: T = await response.json();
         setData(result);
       } catch (err: any) {
         if (err.name !== 'AbortError') {
@@ -85,6 +85,11 @@ export const useFetch = (endpoint?: string, options: Options = {}) => {
     [url, mergedOptions]
   );
 
+  // Define refetch function
+  const refetch = useCallback(() => {
+    fetchData(new AbortController().signal); // Call fetchData with a new AbortController
+  }, [fetchData]);
+
   useEffect(() => {
     const abortController = new AbortController();
     fetchData(abortController.signal);
@@ -94,5 +99,5 @@ export const useFetch = (endpoint?: string, options: Options = {}) => {
     };
   }, []);
 
-  return { data, error, loading };
+  return { data, error, loading, refetch };
 };

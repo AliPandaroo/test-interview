@@ -7,10 +7,16 @@ declare global {
   }
 
   interface CommentMessage {
-    commentId: string | number;
-    content: string;
-    author: Author;
-    createdAt: string;
+    commentId?: string | number;
+    postId?: string | number;
+    content?: string;
+    author?: Author;
+    createdAt?: string;
+
+    id: string | number;
+    name: string;
+    email: string;
+    body: string;
   }
 
   interface Blog {
